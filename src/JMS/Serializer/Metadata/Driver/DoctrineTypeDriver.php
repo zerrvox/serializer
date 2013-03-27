@@ -23,6 +23,7 @@ use JMS\Serializer\Metadata\ClassMetadata;
 use JMS\Serializer\Metadata\PropertyMetadata;
 use Metadata\Driver\DriverInterface;
 use Doctrine\ORM\Mapping\ClassMetadataInfo as OrmClassMetadata;
+use Doctrine\ODM\PHPCR\Mapping\ClassMetadata as PHPCRClassMetadata;
 use Doctrine\Common\Persistence\Mapping\ClassMetadata as ClassMetadataInfo;
 
 /**
@@ -132,6 +133,10 @@ class DoctrineTypeDriver implements DriverInterface
                 $propertyMetadata->setType($fieldType);
             } elseif ($doctrineMetadata->hasAssociation($propertyName)) {
                 if (null === $targetEntity = $doctrineMetadata->getAssociationTargetClass($propertyName)) {
+
+                    if ($doctrineMetadata instanceof PHPCRClassMetadata) {
+                        $propertyMetadata->setType("string");
+                    }
                     continue;
                 }
 
