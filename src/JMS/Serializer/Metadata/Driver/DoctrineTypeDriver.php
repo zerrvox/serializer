@@ -51,7 +51,6 @@ class DoctrineTypeDriver implements DriverInterface
 
         'float'        => 'float',
         'decimal'      => 'float',
-        'double'       => 'float',
 
         'boolean'      => 'boolean',
 
@@ -67,8 +66,19 @@ class DoctrineTypeDriver implements DriverInterface
         'nodename'     => 'string',
         'node'         => 'string',
         'locale'       => 'string',
+        'uuid'         => 'string',
+
+        // These does not work as they are not stored under fields on the document
+        // and are therefore not normalized
+        // 'child'        => 'string',
+        // 'children'     => 'string',
+        // 'parent'       => 'string',
+        'referrers'    => 'string',
+        'mixedreferrers' => 'string',
+
         'long'         => 'integer',
         'date'         => 'DateTime',
+        'double'       => 'float',
     );
 
     /**
@@ -121,7 +131,9 @@ class DoctrineTypeDriver implements DriverInterface
             if ($doctrineMetadata->hasField($propertyName) && $fieldType = $this->normalizeFieldType($doctrineMetadata->getTypeOfField($propertyName))) {
                 $propertyMetadata->setType($fieldType);
             } elseif ($doctrineMetadata->hasAssociation($propertyName)) {
-                $targetEntity = $doctrineMetadata->getAssociationTargetClass($propertyName);
+                if (null === $targetEntity = $doctrineMetadata->getAssociationTargetClass($propertyName)) {
+                    continue;
+                }
 
                 if (null === $targetMetadata = $this->tryLoadingDoctrineMetadata($targetEntity)) {
                     continue;

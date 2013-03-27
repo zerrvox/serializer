@@ -28,7 +28,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ODM\PHPCR\Mapping\Annotations as PHPCR;
 
 /**
- * @PHPCR\Document(translator="attribute")
+ * @PHPCR\Document(referenceable=true, translator="attribute")
  * @XmlRoot("blog-post")
  */
 class BlogPost
@@ -37,6 +37,11 @@ class BlogPost
      * @PHPCR\Id()
      */
     protected $id;
+
+    /**
+     * @PHPCR\Uuid()
+     */
+    protected $uuid;
 
     /**
      * @PHPCR\String()
@@ -50,12 +55,17 @@ class BlogPost
     private $node;
 
     /** @PHPCR\Locale */
-    protected $locale;
+    private $locale;
 
     /**
      * @PHPCR\Nodename
      */
     private $name;
+
+    /**
+     * @PHPCR\ParentDocument()
+     */
+    private $blog;
 
     /**
      * Can't come up with an equivalent case as for ORM
