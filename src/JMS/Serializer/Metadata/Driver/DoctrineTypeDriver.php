@@ -23,7 +23,7 @@ use JMS\Serializer\Metadata\ClassMetadata;
 use JMS\Serializer\Metadata\PropertyMetadata;
 use Metadata\Driver\DriverInterface;
 use Doctrine\ORM\Mapping\ClassMetadataInfo as OrmClassMetadata;
-use Doctrine\Common\Persistence\Mapping\ClassMetadata;
+use Doctrine\Common\Persistence\Mapping\ClassMetadata as ClassMetadataInfo;
 
 /**
  * This class decorates any other driver. If the inner driver does not provide a
@@ -142,7 +142,7 @@ class DoctrineTypeDriver implements DriverInterface
     /**
      * @param string $className
      *
-     * @return OrmClassMetadata|null
+     * @return ClassMetadataInfo|null
      */
     private function tryLoadingDoctrineMetadata($className) {
         if (!$manager = $this->registry->getManagerForClass($className)) {
