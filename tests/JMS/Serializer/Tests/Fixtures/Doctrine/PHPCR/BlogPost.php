@@ -65,7 +65,17 @@ class BlogPost
     /**
      * @PHPCR\ParentDocument()
      */
-    private $blog;
+    private $parent;
+
+    /**
+     * @PHPCR\Child()
+     */
+    private $child;
+
+    /**
+     * @PHPCR\Children()
+     */
+    private $children;
 
     /**
      * Can't come up with an equivalent case as for ORM

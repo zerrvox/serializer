@@ -125,7 +125,27 @@ class DoctrinePHPCRDriverTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals(
             array('name'=> 'string', 'params' => array()),
-            $metadata->propertyMetadata['blog']->type
+            $metadata->propertyMetadata['parent']->type
+        );
+    }
+
+    public function testChildIsConvertedToString()
+    {
+        $metadata = $this->getMetadata();
+
+        $this->assertEquals(
+            array('name'=> 'string', 'params' => array()),
+            $metadata->propertyMetadata['child']->type
+        );
+    }
+
+    public function testChildrenIsConvertedToString()
+    {
+        $metadata = $this->getMetadata();
+
+        $this->assertEquals(
+            array('name'=> 'string', 'params' => array()),
+            $metadata->propertyMetadata['children']->type
         );
     }
 
