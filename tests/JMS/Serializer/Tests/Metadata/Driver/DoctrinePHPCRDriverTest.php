@@ -79,6 +79,16 @@ class DoctrinePHPCRDriverTest extends \PHPUnit_Framework_TestCase
         );
     }
 
+    public function testIdsConvertedToString()
+    {
+        $metadata = $this->getMetadata();
+
+        $this->assertEquals(
+            array('name'=> 'string', 'params' => array()),
+            $metadata->propertyMetadata['id']->type
+        );
+    }
+
     public function testNodenameIsConvertedToString()
     {
         $metadata = $this->getMetadata();

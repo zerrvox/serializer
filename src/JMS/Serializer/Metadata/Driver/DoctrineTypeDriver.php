@@ -125,11 +125,11 @@ class DoctrineTypeDriver implements DriverInterface
 
             // If the inner driver provides a type, don't guess anymore.
             if ($propertyMetadata->type) {
-
-                if ($doctrineMetadata instanceof PHPCRClassMetadata && $propertyMetadata->type == 'node') {
-                    $propertyMetadata->setType("string");
-                }
                 continue;
+            }
+
+            if ($doctrineMetadata instanceof PHPCRClassMetadata && $doctrineMetadata->isIdentifier($propertyMetadata->name)) {
+                $propertyMetadata->setType("string");
             }
 
             $propertyName = $propertyMetadata->name;
