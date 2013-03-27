@@ -74,7 +74,7 @@ class DoctrineTypeDriver implements DriverInterface
         // 'child'        => 'string',
         // 'children'     => 'string',
         // 'parent'       => 'string',
-        'referrers'    => 'string',
+        // 'referrers'    => 'string',
         'mixedreferrers' => 'string',
 
         'long'         => 'integer',
@@ -125,6 +125,10 @@ class DoctrineTypeDriver implements DriverInterface
 
             // If the inner driver provides a type, don't guess anymore.
             if ($propertyMetadata->type) {
+
+                if ($doctrineMetadata instanceof PHPCRClassMetadata && $propertyMetadata->type == 'node') {
+                    $propertyMetadata->setType("string");
+                }
                 continue;
             }
 

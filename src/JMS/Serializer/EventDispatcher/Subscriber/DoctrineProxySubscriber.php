@@ -45,7 +45,7 @@ class DoctrineProxySubscriber implements EventSubscriberInterface
             return;
         }
 
-        if ( ! $object instanceof Proxy && ! $object instanceof ORMProxy && ! $object instanceof PHPCRProxy ) {
+        if ($this->isNotDoctrineProxy($object)) {
             return;
         }
 
@@ -61,5 +61,10 @@ class DoctrineProxySubscriber implements EventSubscriberInterface
         return array(
             array('event' => 'serializer.pre_serialize', 'method' => 'onPreSerialize'),
         );
+    }
+
+    private function isNotDoctrineProxy($object)
+    {
+        return ! ( $object instanceof Proxy || $object instanceof ORMProxy || $object instanceof PHPCRProxy );
     }
 }
