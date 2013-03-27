@@ -66,6 +66,7 @@ class DoctrineTypeDriver implements DriverInterface
         'uri'          => 'string',
         'nodename'     => 'string',
         'node'         => 'string',
+        'locale'       => 'string',
         'long'         => 'integer',
         'date'         => 'DateTime',
     );

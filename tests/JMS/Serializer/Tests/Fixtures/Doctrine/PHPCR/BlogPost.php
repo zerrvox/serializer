@@ -28,7 +28,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ODM\PHPCR\Mapping\Annotations as PHPCR;
 
 /**
- * @PHPCR\Document()
+ * @PHPCR\Document(translator="attribute")
  * @XmlRoot("blog-post")
  */
 class BlogPost
@@ -48,6 +48,9 @@ class BlogPost
      * @PHPCR\Node
      */
     private $node;
+
+    /** @PHPCR\Locale */
+    protected $locale;
 
     /**
      * @PHPCR\Nodename
