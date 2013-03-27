@@ -89,6 +89,16 @@ class DoctrinePHPCRDriverTest extends \PHPUnit_Framework_TestCase
         );
     }
 
+    public function testNodeIsConvertedToString()
+    {
+        $metadata = $this->getMetadata();
+
+        $this->assertEquals(
+            array('name'=> 'string', 'params' => array()),
+            $metadata->propertyMetadata['node']->type
+        );
+    }
+
     // Can't come up with an equevalent test like the one for ORM
     // public function testUnknownDoctrineTypeDoesNotResultInAGuess()
     // {

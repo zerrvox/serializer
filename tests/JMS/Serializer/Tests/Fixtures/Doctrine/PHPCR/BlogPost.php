@@ -44,6 +44,10 @@ class BlogPost
      */
     private $title;
 
+    /**
+     * @PHPCR\Node
+     */
+    private $node;
 
     /**
      * @PHPCR\Nodename
