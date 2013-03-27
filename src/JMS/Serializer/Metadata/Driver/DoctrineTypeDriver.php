@@ -123,6 +123,10 @@ class DoctrineTypeDriver implements DriverInterface
         foreach ($classMetadata->propertyMetadata as $propertyMetadata) {
             /** @var $propertyMetadata PropertyMetadata */
 
+            if ($doctrineMetadata instanceof PHPCRClassMetadata && $propertyMetadata->name == 'node') {
+                $propertyMetadata->setType("null");
+            }
+
             // If the inner driver provides a type, don't guess anymore.
             if ($propertyMetadata->type) {
                 continue;
