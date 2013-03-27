@@ -149,12 +149,13 @@ class DoctrinePHPCRDriverTest extends \PHPUnit_Framework_TestCase
         );
     }
 
-    public function testReferrersIsConvertedToString()
+    public function testReferrersIsProperlyHinted()
     {
         $metadata = $this->getMetadata();
-
         $this->assertEquals(
-            array('name'=> 'string', 'params' => array()),
+            array('name'=> 'ArrayCollection', 'params' => array(
+                array('name'=> 'JMS\Serializer\Tests\Fixtures\Doctrine\PHPCR\Author', 'params' => array()))
+            ),
             $metadata->propertyMetadata['referrers']->type
         );
     }
