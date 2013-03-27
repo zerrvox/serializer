@@ -37,6 +37,11 @@ class Author
      */
     private $name;
 
+    /**
+     * @PHPCR\ReferenceMany(targetDocument="BlogPost")
+     */
+    private $posts;
+
     public function __construct($name)
     {
         $this->name = $name;

@@ -78,6 +78,11 @@ class BlogPost
     private $children;
 
     /**
+     * @PHPCR\Referrers(referencedBy="posts", referringDocument="Author")
+     */
+    private $referrers;
+
+    /**
      * Can't come up with an equivalent case as for ORM
      * @PHPCR\String()
      *
@@ -115,6 +120,12 @@ class BlogPost
      * @Groups({"post"})
      */
     private $author;
+
+    /**
+     * @PHPCR\ReferenceOne()
+     * @Groups({"post"})
+     */
+    private $publishedIn;
 
     public function __construct($title, Author $author, \DateTime $createdAt)
     {

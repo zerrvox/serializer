@@ -149,6 +149,26 @@ class DoctrinePHPCRDriverTest extends \PHPUnit_Framework_TestCase
         );
     }
 
+    public function testReferrersIsConvertedToString()
+    {
+        $metadata = $this->getMetadata();
+
+        $this->assertEquals(
+            array('name'=> 'string', 'params' => array()),
+            $metadata->propertyMetadata['referrers']->type
+        );
+    }
+
+    public function testReferenceOneWithoutTargetDocumentIsConvertedToString()
+    {
+        $metadata = $this->getMetadata();
+
+        $this->assertEquals(
+            array('name'=> 'string', 'params' => array()),
+            $metadata->propertyMetadata['publishedIn']->type
+        );
+    }
+
     // Can't come up with an equevalent test like the one for ORM
     // public function testUnknownDoctrineTypeDoesNotResultInAGuess()
     // {
