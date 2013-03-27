@@ -43,12 +43,11 @@ class DoctrineTypeDriver implements DriverInterface
         'integer'      => 'integer',
         'smallint'     => 'integer',
         'bigint'       => 'integer',
-        'long'         => 'integer',
+
 
         'datetime'     => 'DateTime',
         'datetimetz'   => 'DateTime',
         'time'         => 'DateTime',
-        'date'         => 'DateTime',
 
         'float'        => 'float',
         'decimal'      => 'float',
@@ -60,9 +59,14 @@ class DoctrineTypeDriver implements DriverInterface
         'json_array'   => 'array',
         'simple_array' => 'array<string>',
 
+
+        // PHPCR ODM specific types
         'name'         => 'string',
         'path'         => 'string',
         'uri'          => 'string',
+        'nodename'     => 'string',
+        'long'         => 'integer',
+        'date'         => 'DateTime',
     );
 
     /**

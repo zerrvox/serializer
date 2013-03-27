@@ -44,6 +44,12 @@ class BlogPost
      */
     private $title;
 
+
+    /**
+     * @PHPCR\Nodename
+     */
+    private $name;
+
     /**
      * Can't come up with an equivalent case as for ORM
      * @PHPCR\String()
