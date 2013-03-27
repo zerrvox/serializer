@@ -43,19 +43,26 @@ class DoctrineTypeDriver implements DriverInterface
         'integer'      => 'integer',
         'smallint'     => 'integer',
         'bigint'       => 'integer',
+        'long'         => 'integer',
 
         'datetime'     => 'DateTime',
         'datetimetz'   => 'DateTime',
         'time'         => 'DateTime',
+        'date'         => 'DateTime',
 
         'float'        => 'float',
         'decimal'      => 'float',
+        'double'       => 'float',
 
         'boolean'      => 'boolean',
 
         'array'        => 'array',
         'json_array'   => 'array',
         'simple_array' => 'array<string>',
+
+        'name'         => 'string',
+        'path'         => 'string',
+        'uri'          => 'string',
     );
 
     /**
