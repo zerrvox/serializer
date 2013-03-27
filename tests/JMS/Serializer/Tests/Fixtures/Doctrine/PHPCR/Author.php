@@ -2,13 +2,13 @@
 
 /*
  * Copyright 2013 Johannes M. Schmitt <schmittjoh@gmail.com>
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *     http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -16,23 +16,23 @@
  * limitations under the License.
  */
 
-namespace JMS\Serializer\Tests\Fixtures\Doctrine;
+namespace JMS\Serializer\Tests\Fixtures\Doctrine\PHPCR;
 
 use JMS\Serializer\Annotation\Type;
 use JMS\Serializer\Annotation\SerializedName;
 
-use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ODM\PHPCR\Mapping\Annotations as PHPCR;
 
-/** @ORM\Entity */
+/** @PHPCR\Document(referenceable=true) */
 class Author
 {
-    /** 
-     * @ORM\Id @ORM\Column(type="integer") 
+    /**
+     * @PHPCR\Id()
      */
     protected $id;
 
     /**
-     * @ORM\Column(type="string")
+     * @PHPCR\NodeName
      * @SerializedName("full_name")
      */
     private $name;

@@ -22,8 +22,8 @@ use Doctrine\Common\Persistence\ManagerRegistry;
 use JMS\Serializer\Metadata\ClassMetadata;
 use JMS\Serializer\Metadata\PropertyMetadata;
 use Metadata\Driver\DriverInterface;
-//use Doctrine\ORM\Mapping\ClassMetadataInfo;
-use Doctrine\Common\Persistence\Mapping\ClassMetadata as ClassMetadataInfo;
+use Doctrine\ORM\Mapping\ClassMetadataInfo as OrmClassMetadata;
+use Doctrine\Common\Persistence\Mapping\ClassMetadata;
 
 /**
  * This class decorates any other driver. If the inner driver does not provide a
@@ -91,7 +91,7 @@ class DoctrineTypeDriver implements DriverInterface
             return $classMetadata;
         }
 
-        if ($doctrineMetadata instanceof ClassMetadataInfo) {
+        if ($doctrineMetadata instanceof OrmClassMetadata) {
             if (empty($classMetadata->discriminatorMap) && ! $classMetadata->discriminatorDisabled
                     && ! empty($doctrineMetadata->discriminatorMap) && $doctrineMetadata->isRootEntity()) {
                 $classMetadata->setDiscriminator(
@@ -124,7 +124,7 @@ class DoctrineTypeDriver implements DriverInterface
                 // For inheritance schemes, we cannot add any type as we would only add the super-type of the hierarchy.
                 // On serialization, this would lead to only the supertype being serialized, and properties of subtypes
                 // being ignored.
-                if ($targetMetadata instanceof ClassMetadataInfo && ! $targetMetadata->isInheritanceTypeNone()) {
+                if ($targetMetadata instanceof OrmClassMetadata && ! $targetMetadata->isInheritanceTypeNone()) {
                     continue;
                 }
 
@@ -142,7 +142,7 @@ class DoctrineTypeDriver implements DriverInterface
     /**
      * @param string $className
      *
-     * @return ClassMetadataInfo|null
+     * @return OrmClassMetadata|null
      */
     private function tryLoadingDoctrineMetadata($className) {
         if (!$manager = $this->registry->getManagerForClass($className)) {

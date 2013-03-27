@@ -25,6 +25,7 @@
     "require-dev": {
         "twig/twig": ">=1.8,<2.0-dev",
         "doctrine/orm": ">=2.1,<2.4-dev",
+        "doctrine/phpcr-odm": ">=1.0,<1.1-dev",
         "symfony/yaml": "2.*",
         "symfony/translation": ">=2.0,<2.2-dev",
         "symfony/validator": ">=2.0,<2.2-dev",
